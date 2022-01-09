@@ -6,5 +6,7 @@ import authapp.views as authapp
 app_name = 'authapp'
 
 urlpatterns = [
-    path('api/', authapp.CreateUserAPI.as_view()),
+    path('create-user/', authapp.CreateUserAPI.as_view()),
+    path('read-parameters-body-user/<int:pk>/', authapp.ParametersBodyUser.as_view()),
+
 ]
