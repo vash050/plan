@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from rest_framework.generics import CreateAPIView, RetrieveUpdateDestroyAPIView
 
-from authapp.models import DataUserParameters
-from authapp.serializers import UserSiteSerializer, ParametersBodyUserSerializer
+from authapp.models import DataUserParameters, UserBody
+from authapp.serializers import UserSiteSerializer, UserBodySerializer
 
 
 class CreateUserAPI(CreateAPIView):
@@ -10,9 +10,10 @@ class CreateUserAPI(CreateAPIView):
 
 
 class ParametersBodyUser(RetrieveUpdateDestroyAPIView):
-    serializer_class = ParametersBodyUserSerializer
+    serializer_class = UserBodySerializer
 
     def get_queryset(self):
-        queryset = DataUserParameters.objects.filter(user=self.request.user.id) or None
+        queryset = UserBody.objects.filter(id=self.kwargs['pk'])
+        print(self.kwargs['pk'])
+        print(queryset)
         return queryset
-
