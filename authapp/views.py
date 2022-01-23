@@ -13,7 +13,7 @@ class ParametersBodyUser(RetrieveUpdateDestroyAPIView):
     serializer_class = UserBodySerializer
 
     def get_queryset(self):
-        queryset = UserBody.objects.filter(id=self.kwargs['pk'])
-        print(self.kwargs['pk'])
+        queryset = UserBody.objects.filter(id=self.kwargs['pk']).filter(date=self.kwargs['date'])
+        print(self.kwargs['date'])
         print(queryset)
         return queryset

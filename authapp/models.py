@@ -1,8 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
-from mainapp.models import Plan
-
 
 class UserSite(AbstractUser):
     date_born = models.DateField(verbose_name="день рождения", null=True)
@@ -37,16 +35,6 @@ class UserBody(models.Model):
 
     def __str__(self):
         return f'параметры тела {self.user.username}'
-
-
-class UserPlan(models.Model):
-    user = models.ForeignKey(to=UserSite, on_delete=models.CASCADE)
-    plan = models.ForeignKey(to=Plan, on_delete=models.CASCADE)
-    comment = models.TextField(verbose_name='комментарии', blank=True)
-
-    class Meta:
-        verbose_name = 'план пользователь'
-        verbose_name_plural = 'планы пользователя'
 
 
 class DataUserParameters(models.Model):
