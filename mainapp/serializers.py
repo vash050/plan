@@ -1,19 +1,11 @@
 from rest_framework.serializers import ModelSerializer
 
 
-from mainapp.models import Plan
+from mainapp.models import PlanUser
 
 
-class PlanSerializer(ModelSerializer):
+class PlanUserSerializer(ModelSerializer):
     class Meta:
-        model = Plan
+        model = PlanUser
         depth = 1
-        fields = ('exercises', )
-
-
-# class PlanUserSerializer(ModelSerializer):
-#     all_plans = PlanSerializer(source="plan_set", many=True, read_only=True)
-#
-#     class Meta:
-#         model = UserPlan
-#         fields = ('user', 'all_plans', 'comment', 'date', 'plan')
+        fields = ('id', 'plan_date', 'plans', 'comment')

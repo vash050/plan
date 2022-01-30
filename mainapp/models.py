@@ -29,23 +29,33 @@ class Exercises(models.Model):
         return self.name
 
 
-class Plan(models.Model):
-    exercises = models.ManyToManyField(to=Exercises)
+class ExerciseUser(models.Model):  # rename
+    exercises = models.ForeignKey(to=Exercises, on_delete=models.CASCADE)
     counter = models.IntegerField(verbose_name='подходы')
     replay = models.IntegerField(verbose_name='повторения')
     weight = models.IntegerField(verbose_name='вес', null=True)
     comment = models.TextField(verbose_name='комментарии', blank=True)
+    plan_date = models.DateField()
 
     class Meta:
         verbose_name = 'запланированое упражнение'
         verbose_name_plural = 'запланированные упражнения'
 
+    def __str__(self):
+        return f'План на {self.exercises.name} на {self.plan_date}'
+
 
 class PlanUser(models.Model):
     user = models.ForeignKey(to=UserSite, on_delete=models.CASCADE)
     date = models.DateField(auto_now_add=True)
-    plans = models.ManyToManyField(Plan)
+    plan_date = models.DateField()
+    plans = models.ManyToManyField(ExerciseUser)
     comment = models.TextField(verbose_name='комментарии', blank=True)
 
+    class Meta:
+        verbose_name = 'план пользователя'
+        verbose_name_plural = 'планы пользователя'
+
+
     def __str__(self):
-        return f'План на {self.date}'
+        return f'План на {self.plan_date}'
