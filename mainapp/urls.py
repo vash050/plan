@@ -6,5 +6,6 @@ import mainapp.views as mainapp
 app_name = 'mainapp'
 
 urlpatterns = [
-    path('api/v1/plans-user/<str:plan_date>/', mainapp.PlanDaysApi.as_view()),
+    path('api/v1/plans-user/', mainapp.PlanWeekApi.as_view()),
+    path('api/v1/create-plans-user/', mainapp.CreatePlanWeekApi.as_view()),
 ]

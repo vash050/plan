@@ -56,6 +56,5 @@ class PlanUser(models.Model):
         verbose_name = 'план пользователя'
         verbose_name_plural = 'планы пользователя'
 
-
     def __str__(self):
         return f'План на {self.plan_date}'

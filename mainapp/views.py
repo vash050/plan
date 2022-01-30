@@ -1,13 +1,10 @@
-import datetime
-
-from rest_framework.generics import ListAPIView
-from rest_framework.response import Response
+from rest_framework.generics import ListAPIView, CreateAPIView
 
 from mainapp.models import PlanUser
-from mainapp.serializers import PlanUserSerializer
+from mainapp.serializers import PlanUserSerializer, CreatePlanUserSerializer
 
 
-class PlanDaysApi(ListAPIView):
+class PlanWeekApi(ListAPIView):
     model = PlanUser
     serializer_class = PlanUserSerializer
 
@@ -16,3 +13,5 @@ class PlanDaysApi(ListAPIView):
         return plan
 
 
+class CreatePlanWeekApi(CreateAPIView):
+    serializer_class = CreatePlanUserSerializer
